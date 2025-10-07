@@ -2,7 +2,7 @@
 set -euo pipefail
 #LOG=crabs.log
 ifFile() {
-	[[ -f ".bash/$1.sh" ]]
+	[[ -f ".bash/$1" ]]
 }
 all() {
 	pre() {
