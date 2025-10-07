@@ -1,2 +1,2 @@
-imports_granularity = One
+imports_granularity = "One"
 hard_tabs = true
