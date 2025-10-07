@@ -18,7 +18,7 @@ all() {
 		build() {
 			cargo build
 		}
-		if [[ -f .bash/dev.sh ]]; then
+		if ifFile "dev"; then
 			dev
 		else
 			build
