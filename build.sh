@@ -5,11 +5,8 @@ ifFile() {
 }
 all() {
 	pre() {
-		fmt() {
-			cargo fmt
-			cargo clippy
-		}
-		fmt
+		cargo fmt
+		cargo clippy
 	}
 	main() {
 		dev() {
