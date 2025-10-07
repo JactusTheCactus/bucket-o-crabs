@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-LOG=crabs.log
-rm -f $LOG
+#LOG=crabs.log
 all() {
 	pre() {
 		fmt() {
@@ -16,9 +15,10 @@ all() {
 		build() {
 			cargo build
 		}
-		build
 		if [[ -f .bash/dev.sh ]]; then
 			dev
+		else
+			build
 		fi
 	}
 	pre
