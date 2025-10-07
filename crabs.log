@@ -1,3 +1,2 @@
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.01s
-     Running `target/debug/bucket-o-crabs`
+[1m[32m   Compiling[0m bucket-o-crabs v0.1.0 (/home/runner/work/bucket-o-crabs/bucket-o-crabs)
+[1m[32m    Finished[0m `dev` profile [unoptimized + debuginfo] target(s) in 3.00s
