@@ -13,9 +13,6 @@ jobs:
       - name: Build
         run: |
           ./build.sh
-  commit:
-    runs-on: ubuntu-latest
-    steps:
       - name: commit changes
         run: |
           git add .
