@@ -1,2 +1,15 @@
 [1m[32m   Compiling[0m bucket-o-crabs v0.1.0 (/home/runner/work/bucket-o-crabs/bucket-o-crabs)
-[1m[32m    Finished[0m `dev` profile [unoptimized + debuginfo] target(s) in 4.11s
+[0m[1m[38;5;9merror[0m[0m[1m: expected item, found `;`[0m
+[0m [0m[0m[1m[38;5;12m--> [0m[0msrc/main.rs:1:77[0m
+[0m  [0m[0m[1m[38;5;12m|[0m
+[0m[1m[38;5;12m1[0m[0m [0m[0m[1m[38;5;12m|[0m[0m [0m[0muse std::{thread, time};struct Generator {name: String,income_per_tick: f64};fn main() {let mut crabs: f64 = 0.0;let generator = Generato[0m[0m[1m[38;5;12m...[0m
+[0m  [0m[0m[1m[38;5;12m|[0m[0m                                                                             [0m[0m[1m[38;5;9m^[0m
+[0m  [0m[0m[1m[38;5;12m|[0m
+[0m  [0m[0m[1m[38;5;12m= [0m[0m[1mhelp[0m[0m: braced struct declarations are not followed by a semicolon[0m
+[0m[1m[38;5;14mhelp[0m[0m: remove this semicolon[0m
+[0m  [0m[0m[1m[38;5;12m|[0m
+[0m[1m[38;5;12m1[0m[0m [0m[0m[38;5;9m- [0m[0muse std::{thread, time};struct Generator {name: String,income_per_tick: f64}[0m[0m[38;5;9m;[0m[0mfn main() {let mut crabs: f64 = 0.0;let generator = Generator {name: String::from("Basic Shovel"),income_per_tick: 1.0};let tick_duration = time::Duration::from_secs(1);println!("Welcome to Bucket-o-Crabs!");println!("\tPress Ctrl+C to quit.");loop {crabs += generator.income_per_tick;println!("The Bucket has {:.0} Crabs",crabs);println!("\t{}:",generator.name);println!("\t\t+{:.0}",generator.income_per_tick);thread::sleep(tick_duration)}}[0m
+[0m[1m[38;5;12m1[0m[0m [0m[0m[38;5;10m+ [0m[0muse std::{thread, time};struct Generator {name: String,income_per_tick: f64}fn main() {let mut crabs: f64 = 0.0;let generator = Generator {name: String::from("Basic Shovel"),income_per_tick: 1.0};let tick_duration = time::Duration::from_secs(1);println!("Welcome to Bucket-o-Crabs!");println!("\tPress Ctrl+C to quit.");loop {crabs += generator.income_per_tick;println!("The Bucket has {:.0} Crabs",crabs);println!("\t{}:",generator.name);println!("\t\t+{:.0}",generator.income_per_tick);thread::sleep(tick_duration)}}[0m
+[0m  [0m[0m[1m[38;5;12m|[0m
+
+[1m[31merror[0m[1m:[0m could not compile `bucket-o-crabs` (bin "bucket-o-crabs") due to 1 previous error
