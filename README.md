@@ -1,4 +1,11 @@
-<style>body{font:20pt"Noto Sans"}code{font-family:"Noto Sans Mono"}</style>
+<style>
+	body {
+		font: 20pt "Noto Sans"
+	}
+	code {
+		font-family: "Noto Sans Mono"
+	}
+</style>
 # **Rust Idle Game Learning Roadmap**
 ## **Phase 1 – Rust Basics (Console)**
 **Goal:** Get comfortable with Rust syntax, types, and the compiler.
