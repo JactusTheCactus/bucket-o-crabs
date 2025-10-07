@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 #LOG=crabs.log
+ifFile() {
+	[[ -f ".bash/$1.sh" ]]
+}
 all() {
 	pre() {
 		fmt() {
