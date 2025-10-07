@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 #LOG=crabs.log
 ifFile() {
 	[[ -f ".bash/$1.sh" ]]
