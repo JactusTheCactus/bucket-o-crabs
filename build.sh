@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# LOG=crabs.log
+LOG=crabs.log
+rm -f $LOG
 all() {
 	pre() {
 		fmt() {
