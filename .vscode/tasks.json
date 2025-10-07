@@ -10,5 +10,13 @@
 				"isDefault": true
 			}
 		}
-	]
+	],
+	"presentation": {
+		"echo": false,
+		"panel": "dedicated",
+		"showReuseMessage": false,
+		"clear": true,
+		"close": true,
+		"revealProblems": "onProblem"
+	}
 }

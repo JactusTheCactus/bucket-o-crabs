@@ -1,15 +1,26 @@
 #!/usr/bin/env bash
+LOG=crabs.log
 all() {
-	dev () {
-		cargo run
+	pre() {
+		fmt() {
+			cargo fmt
+			cargo clippy
+		}
+		fmt
 	}
-	build() {
-		cargo build
+	main() {
+		dev () {
+			cargo run
+		}
+		build() {
+			cargo build
+		}
+		build > $LOG
+		if [[ -f .bash/dev.sh ]]; then
+			dev
+		fi
 	}
-	if [[ -f .bash/dev.sh ]]; then
-		dev
-	else
-		build
-	fi
+	pre > $LOG
+	main 2> $LOG
 }
 all
