@@ -1,4 +1,3 @@
 /target
 .flags/local
-.flags/run
 .flags/fmt
