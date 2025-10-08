@@ -2,29 +2,35 @@
 set -euo pipefail
 FILE="bucket-o-crabs"
 flag() {
-	[[ -f ".flags/$1" ]]
+	for f in "$@"; do
+		if [[ ! -f ".flags/$f" ]]; then
+			return 1
+		fi
+	done
+	return 0
 }
 all() {
 	pre() {
-		cargo fmt
-		cargo clippy
+		if flag fmt; then
+			cargo fmt && cargo clippy
+		fi
 	}
 	main() {
 		cargo build
 	}
 	post() {
 		copy() {
-			cp "target/debug/$FILE" "$FILE"
-			chmod +x "$FILE"
+			mkdir -p bin
+			cp "target/debug/$FILE" "bin/$FILE"
 		}
 		run() {
-			"./$FILE"
+			"./bin/$FILE"
 		}
 		if flag local; then
 			copy
-		fi
-		if flag run; then
-			run
+			if flag run; then
+				run
+			fi
 		fi
 	}
 	pre && main && post
