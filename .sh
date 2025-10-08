@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 FILE="bucket-o-crabs"
+DEBUG="target/debug/$FILE"
+BIN="bin/$FILE"
 flag() {
 	for f in "$@"; do
-		if [[ ! -f ".flags/$f" ]]; then
+		if [[ ! -e ".flags/$f" ]]; then
 			return 1
 		fi
 	done
-	return 0
 }
 all() {
 	pre() {
@@ -20,18 +21,17 @@ all() {
 	}
 	post() {
 		copy() {
-			mkdir -p bin
-			cp "target/debug/$FILE" "bin/$FILE"
+			if flag local; then
+				mkdir -p bin
+				cp "$DEBUG" "$BIN"
+			fi
 		}
 		run() {
-			"./bin/$FILE"
-		}
-		if flag local; then
-			copy
-			if flag run; then
-				run
+			if flag local/run; then
+				"./$BIN"
 			fi
-		fi
+		}
+		copy && run
 	}
 	pre && main && post
 }
