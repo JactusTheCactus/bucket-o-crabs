@@ -1,2 +1,3 @@
 /target
-.bash
+.flags/local
+.flags/run

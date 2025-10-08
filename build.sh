@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
-#LOG=crabs.log
-ifFile() {
-	[[ -f ".bash/.$1" ]]
+FILE="bucket-o-crabs"
+flag() {
+	[[ -f ".flags/$1" ]]
 }
 all() {
 	pre() {
@@ -10,19 +10,23 @@ all() {
 		cargo clippy
 	}
 	main() {
-		dev() {
-			cargo run
+		cargo build
+	}
+	post() {
+		copy() {
+			cp "target/debug/$FILE" "$FILE"
+			chmod +x "$FILE"
 		}
-		build() {
-			cargo build
+		run() {
+			"./$FILE"
 		}
-		if ifFile "dev"; then
-			dev
-		else
-			build
+		if flag local; then
+			copy
+		fi
+		if flag run; then
+			run
 		fi
 	}
-	pre
-	main
+	pre && main && post
 }
 all
