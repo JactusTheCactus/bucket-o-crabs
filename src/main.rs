@@ -1,12 +1,25 @@
-use crossterm::{
-	cursor,
-	event::{self, Event, KeyCode},
-	execute,
-	terminal::{self, enable_raw_mode, ClearType},
-};
-use std::{
-	io::{self},
-	thread, time,
+use {
+	crossterm::{
+		cursor,
+		event::{
+			self,
+			Event,
+			KeyCode,
+		},
+		execute,
+		terminal::{
+			self,
+			enable_raw_mode,
+			ClearType,
+		},
+	},
+	std::{
+		io::{
+			self,
+		},
+		thread,
+		time,
+	},
 };
 struct State {
 	bank: f64,
@@ -16,13 +29,14 @@ struct Collector {
 	name: String,
 	rate: f64,
 	lvl: f64,
+	price: f64,
 }
 struct Bucket {
 	size: f64,
 	crabs: f64,
 }
 fn main() {
-	let tick = time::Duration::from_secs(1);
+	let tick = time::Duration::from_secs(1,);
 	let mut state = State {
 		bank: 0.0,
 		price: 1.0,
@@ -33,20 +47,22 @@ fn main() {
 	};
 	let mut collectors = [
 		Collector {
-			name: String::from("Basic Shovel"),
+			name: String::from("Basic Shovel",),
 			rate: 1.0,
 			lvl: 1.0,
+			price: 1.0,
 		},
 		Collector {
-			name: String::from("Basic Snow-Shovel"),
+			name: String::from("Basic Snow-Shovel",),
 			rate: 2.0,
 			lvl: 1.0,
+			price: 2.0,
 		},
 	];
 	let mut full = false;
 	let refresh = || {
 		if true {
-			/* boolean toggle for easy debugging */
+			// boolean toggle for easy debugging
 			execute!(
 				io::stdout(),
 				terminal::Clear(ClearType::All),
@@ -55,7 +71,7 @@ fn main() {
 			.unwrap()
 		}
 	};
-	enable_raw_mode().expect("Failed to enter raw mode");
+	enable_raw_mode().expect("Failed to enter raw mode",);
 	refresh();
 	println!("\rWelcome to Bucket-o-Crabs!");
 	println!("\r\t1. Press [SPACE] to empty the bucket");
@@ -64,12 +80,12 @@ fn main() {
 		collectors.len()
 	);
 	println!("\r\t3. Press Ctrl+C to quit");
-	thread::sleep(time::Duration::from_secs(10));
+	thread::sleep(time::Duration::from_secs(10,),);
 	loop {
 		refresh();
-		if event::poll(time::Duration::from_millis(10)).unwrap() {
-			if let Event::Key(key_event) = event::read().unwrap() {
-				if key_event.code == KeyCode::Char(' ') {
+		if event::poll(time::Duration::from_millis(10,),).unwrap() {
+			if let Event::Key(key_event,) = event::read().unwrap() {
+				if key_event.code == KeyCode::Char(' ',) {
 					let haul = bucket.crabs * state.price;
 					println!("\rBucket Emptied!");
 					println!("\r\tYou earned ${}", haul);
@@ -81,39 +97,40 @@ fn main() {
 			}
 		}
 		println!(
-			"\rCrabs: {:.0}/{:.0} ({:.2}%)",
+			"\rCrabs: {:.2}/{:.2} ({:.2}%)",
 			bucket.crabs,
 			bucket.size,
 			(bucket.crabs / bucket.size) * 100.0
 		);
 		println!("\r${}", state.bank);
 		if !full {
-			if event::poll(time::Duration::from_millis(10)).unwrap() {
-				if let Event::Key(key_event) = event::read().unwrap() {
-					for (i, n) in collectors.iter_mut().enumerate() {
-						let code = std::char::from_digit((i + 1) as u32, 10).unwrap();
-						if key_event.code == KeyCode::Char(code) {
+			if event::poll(time::Duration::from_millis(10,),).unwrap() {
+				if let Event::Key(key_event,) = event::read().unwrap() {
+					for (i, n,) in collectors.iter_mut().enumerate() {
+						let code = std::char::from_digit((i + 1) as u32, 10,).unwrap();
+						if key_event.code == KeyCode::Char(code,) && state.bank >= n.price {
 							n.lvl += 1.0;
+							state.bank -= n.price
 						}
 					}
 				}
 			};
-			for (i, c) in collectors.iter_mut().enumerate() {
-				let gain = c.rate.powf(c.lvl);
+			for (i, c,) in collectors.iter_mut().enumerate() {
+				let gain = c.rate.powf(c.lvl,);
 				bucket.crabs += gain;
 				if bucket.crabs >= bucket.size {
 					bucket.crabs = bucket.size;
 					full = true
 				}
 				println!(
-					"\r\t[{}]\t+{:.0}\tLvl-{:.0}\t{}",
+					"\r\t[{}]\t+{:.2}\tLvl-{:.0}\t{}",
 					i + 1,
 					gain,
 					c.lvl,
 					c.name
-				);
+				)
 			}
 		}
-		thread::sleep(tick)
+		thread::sleep(tick,)
 	}
 }

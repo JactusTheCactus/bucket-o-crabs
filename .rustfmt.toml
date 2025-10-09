@@ -1,1 +1,10 @@
 hard_tabs = true
+imports_granularity = "One"
+imports_layout = "Vertical"
+trailing_comma = "Always"
+where_single_line = true
+blank_lines_upper_bound = 0
+color = "Always"
+condense_wildcard_suffixes = true
+fn_single_line = true
+hex_literal_case = "Upper"
