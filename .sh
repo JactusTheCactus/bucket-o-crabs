@@ -14,12 +14,8 @@ tree .flags
 if ! flag local; then
 	rustup component add --toolchain nightly-x86_64-unknown-linux-gnu rustfmt
 fi
-if flag fmt; then
-	cargo +nightly fmt
-fi
-if flag local/lint; then
-	cargo clippy
-fi
+cargo +nightly fmt
+cargo clippy
 for i in "${BUILDS[@]}"; do
 	if flag "build/$i"; then
 		case "$i" in
