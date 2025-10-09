@@ -11,7 +11,9 @@ flag() {
 	done
 }
 tree .flags
-cargo +nightly fmt
+if flag fmt; then
+	cargo +nightly fmt
+fi
 if flag local/lint; then
 	cargo clippy
 fi
