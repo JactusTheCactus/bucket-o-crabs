@@ -18,7 +18,7 @@ if flag local/lint; then
 	cargo clippy
 fi
 for i in "${BUILDS[@]}"; do
-	if flag "local/$i"; then
+	if flag "build/$i"; then
 		case "$i" in
 			debug) BUILD="";;
 			*) BUILD="--$i";;
