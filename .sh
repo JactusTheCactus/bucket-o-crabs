@@ -10,7 +10,6 @@ flag() {
 		[[ -e ".flags/$f" ]] || return 1
 	done
 }
-rm -rf .flags/fmt
 tree .flags
 if ! flag local; then
 	rustup component add --toolchain nightly-x86_64-unknown-linux-gnu rustfmt
