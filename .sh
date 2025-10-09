@@ -11,6 +11,7 @@ flag() {
 	done
 }
 tree .flags
+rustup component add --toolchain nightly-x86_64-unknown-linux-gnu rustfmt
 if flag fmt; then
 	cargo +nightly fmt
 fi
